@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import './App.css'
-import { Route, Routes } from 'react-router-dom'
-import LoginPage from './loginPage'
-import TodoPage from './TodoPage'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import AuthPage from './components/AuthComponents/AuthPage'
+import TodoPage from './components/AuthComponents/TodoPage'
 
 function App() {
+  const [isLoggedIn,setIsLoggedIn] = useState(false); 
   return (
     <div>
       <Routes>
-        <Route path='/login' element={<LoginPage/>} />
+        <Route path='/' element={isLoggedIn ? <Navigate to='/todo'/> : <Navigate to='/auth'/>} />
+        <Route path='/auth' element={<AuthPage/>} />
         <Route path='/todo' element={<TodoPage/>} />
       </Routes>
     </div>
