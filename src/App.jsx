@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import AuthPage from './components/AuthComponents/AuthPage'
-import TodoPage from './components/AuthComponents/TodoPage'
+import TodoPage from './components/todoComponents/TodoPage'
 
 function App() {
   const [isLoggedIn,setIsLoggedIn] = useState(false); 
