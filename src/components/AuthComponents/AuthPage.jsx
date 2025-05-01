@@ -5,44 +5,52 @@ import { IoMdLock } from "react-icons/io";
 const AuthPage = () => {
     const [isLogin,setIsLogin] = useState(true);
     const [errorMessage,setErrorMessage] = useState(null);
+    const [darkMode,setDarkMode] = useState(false);
+
+    const toggleDarkMode = () => {
+        document.body.classList.toggle('dark');
+    }
     
   return (
-    <div className="flex flex-col items-center " >
-        <div className='flex flex-col justify-center w-[50vh] h-[100vh]'>
-            <form action="" className='flex flex-col items-center h-80 border-2 rounded-2xl'>
+    <div className="flex flex-col items-center bg-amber-300" >
+        <div className='flex flex-col justify-center h-[100vh]'>
+            <form action="" className='flex flex-col items-center  border-2 rounded-2xl px-8'>
                 <h1 className="font-semibold text-2xl my-10">{(isLogin) ? 'Login':'Sign Up'}</h1>
                 {errorMessage && 
-                <div className=''>
-                    <p>{errorMessage}</p>
+                <div className='text-xs max-h-20 w-84 p-2 mb-1 border rounded-xl border-red-900 bg-red-100 overflow-scroll'>
+                    <p className='text-red-800 text-center'>{errorMessage}</p>
                 </div>}
-                <div className='inputs-class flex flex-col gap-1 mb-10'>
+                <div className='inputs-class flex flex-col gap-1 mb-4'>
                     <div className='flex relative'>
-                        <input placeholder='username' className='required border rounded-2xl border-gray-600 pl-3 py-1 pr-6' type='text' required/>
-                        <FaUser className='absolute top-1/2 right-1 transform -translate-y-1/2'/>
+                        <input placeholder='username' className='required border rounded-2xl border-gray-600 p-3 py-1 pr-7' type='text' required/>
+                        <FaUser className='absolute top-1/2 right-2 transform -translate-y-1/2'/>
                     </div>
                     <div className='flex relative'>
-                        <input placeholder='password' className='required border rounded-2xl border-gray-600 pl-3 py-1 pr-6'  type='password' required/>
-                        <IoMdLock className='absolute top-1/2 right-1 transform -translate-y-1/2'/>
+                        <input placeholder='password' className='required border rounded-2xl border-gray-600 pl-3 py-1 pr-7'  type='password' required/>
+                        <IoMdLock className='absolute top-1/2 right-2 transform -translate-y-1/2'/>
                     </div>
                     
                     {!isLogin && 
                     <div className='flex relative'>
-                        <input placeholder='confirm password' className='required border rounded-2xl border-gray-600 pl-3 py-1 pr-6'  type='password' required/>
-                        <IoMdLock className='absolute top-1/2 right-1 transform -translate-y-1/2'/>
+                        <input placeholder='confirm password' className='required border rounded-2xl border-gray-600 pl-3 py-1 pr-7'  type='password' required/>
+                        <IoMdLock className='absolute top-1/2 right-2 transform -translate-y-1/2'/>
                     </div>}
                 </div>
 
                 {(isLogin) && 
-                <div className=''>
-                        <label><input type='checkbox'/>remember me</label>
+                <div className='flex w-full mb-4'>
+                        <label className='ml-2 text-sm flex flex-row items-center'><input className='mr-2' type='checkbox'/>remember me</label>
                 </div>}
-                <div className=''>
-                    <button type="submit">{(isLogin) ? 'Login':'Sign Up'}</button>
+                <div className='flex w-full justify-center mb-4'>
+                    <button type="submit" className='w-full font-semibold border rounded-2xl border-gray-600 px-3 py-1'>{(isLogin) ? 'Login':'Sign Up'}</button>
                 </div>
-                <div className=''>
-                    <p>{isLogin ? 'Don\'t have an Account?':'already have an account?'} <a href='#' onClick={() => setIsLogin(!isLogin)}>{(isLogin)? 'SignUp':'Sign In'}</a></p>
+                <div className='mb-4'>
+                    <p className='text-xs'>{isLogin ? 'Don\'t have an Account?':'already have an account?'} <a href='#' onClick={() => setIsLogin(!isLogin)}>{(isLogin)? 'SignUp':'Sign In'}</a></p>
                 </div>
             </form>
+        </div>
+        <div className='absolute bottom-2 right-2'>
+            <button className='text-white bg-black rounded-full w-[50px] h-[50px] cursor-pointer' onClick={toggleDarkMode}>{darkMode ? 'WHT':'DRK'}</button>
         </div>
     </div>
   )
