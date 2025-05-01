@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import './TodoPage.css'
 import todos from '../../todos.json'; 
 import TodoCard from './todoCard';
 
