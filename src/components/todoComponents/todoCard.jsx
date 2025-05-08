@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 
-const TodoCard = ({todo: {id,description,date,done},onUpdate,onRemove}) => {  
+const TodoCard = ({todo: {id,description,done},onUpdate,onRemove}) => {  
   const handleChange = (field,value) => {
     onUpdate(id,{[field]:value})
   }
@@ -23,16 +23,6 @@ const TodoCard = ({todo: {id,description,date,done},onUpdate,onRemove}) => {
                 }}
                 /> 
               
-              
-              <input 
-                type="date" 
-                value={date} 
-                className="border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 min-w-0 w-45 w-max-10"
-                readOnly={done}
-                onChange={(e)=>{
-                  handleChange('date',e.target.value)  
-                  }}
-              />
               <button className='text-red-700 text-xl cursor-pointer h-6' onClick={() => onRemove(id)}>X</button>
           </li>
         

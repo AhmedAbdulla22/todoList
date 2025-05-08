@@ -33,8 +33,7 @@ const TodoPage = () => {
             <h3 className='text-xl font-semibold'>Todo List App</h3>
             <div className="input-container flex text-sm gap-1 border rounded-xl p-2 w-full overflow-hidden">
                 <input type="text" className="border rounded-2xl accent-black border-gray-600 w-min-0 w-full py-1 px-2" placeholder='write a todo...'/>
-                <input type="date" className="border rounded-2xl accent-black border-gray-600 w-8 py-1 px-1  cursor-pointer" />
-                <button className="border rounded-2xl border-gray-600 py-1 px-2 cursor-pointer">Add</button>
+                <button className="border rounded-2xl border-gray-600 py-1 px-2 cursor-pointer absolute right-[55px] w-20">Add</button>
             </div>
 
             <div className="border rounded-xl p-2 w-full h-80 overflow-auto">
