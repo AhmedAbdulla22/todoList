@@ -12,7 +12,7 @@ const AuthPage = () => {
     }
     
   return (
-    <div className="flex flex-col items-center bg-amber-300" >
+    <div className="flex flex-col items-center" >
         <div className='flex flex-col justify-center h-[100vh]'>
             <form action="" className='flex flex-col items-center  border-2 rounded-2xl px-8'>
                 <h1 className="font-semibold text-2xl my-10">{(isLogin) ? 'Login':'Sign Up'}</h1>
@@ -22,17 +22,17 @@ const AuthPage = () => {
                 </div>}
                 <div className='inputs-class flex flex-col gap-1 mb-4'>
                     <div className='flex relative'>
-                        <input placeholder='username' className='required border rounded-2xl border-gray-600 p-3 py-1 pr-7' type='text' required/>
+                        <input placeholder='username' className='required border accent-black rounded-2xl border-gray-600 p-3 py-1 pr-7' type='text' required/>
                         <FaUser className='absolute top-1/2 right-2 transform -translate-y-1/2'/>
                     </div>
                     <div className='flex relative'>
-                        <input placeholder='password' className='required border rounded-2xl border-gray-600 pl-3 py-1 pr-7'  type='password' required/>
+                        <input placeholder='password' className='required border accent-black rounded-2xl border-gray-600 pl-3 py-1 pr-7'  type='password' required/>
                         <IoMdLock className='absolute top-1/2 right-2 transform -translate-y-1/2'/>
                     </div>
                     
                     {!isLogin && 
                     <div className='flex relative'>
-                        <input placeholder='confirm password' className='required border rounded-2xl border-gray-600 pl-3 py-1 pr-7'  type='password' required/>
+                        <input placeholder='confirm password' className='required border accent-black rounded-2xl border-gray-600 pl-3 py-1 pr-7'  type='password' required/>
                         <IoMdLock className='absolute top-1/2 right-2 transform -translate-y-1/2'/>
                     </div>}
                 </div>
