@@ -23,7 +23,7 @@ const TodoCard = ({todo: {id,description,done},onUpdate,onRemove}) => {
                 }}
                 /> 
               
-              <button className='text-red-700 text-xl cursor-pointer h-6' onClick={() => onRemove(id)}>X</button>
+              <button className='text-red-700 text-xl cursor-pointer h-6' onClick={() => onRemove(id)}><img src='delete.svg' /></button>
           </li>
         
   )
