@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import {  useState } from 'react'
 import { Navigate,Router, Route, Routes } from 'react-router-dom'
 import AuthPage from './components/AuthComponents/AuthPage'
 import TodoPage from './components/todoComponents/TodoPage'
@@ -8,8 +8,6 @@ function App() {
     localStorage.getItem('isAuthenticated') === 'true'
   ); 
 
-  //create context
-  const item = createContext('hello')
 
   const handleLogin = () => {
     setIsAuthenticated(true);
@@ -20,7 +18,7 @@ function App() {
     <div>
         <Routes>
           <Route path='/' element={isAuthenticated ? <Navigate to='/todo' replace/> : <Navigate to='/auth' replace/>}/>
-          <Route path='/todo' element={isAuthenticated ? <TodoPage/> : <Navigate to='/auth' replace/>} />
+          <Route path='/todo' element={isAuthenticated ? <TodoPage setIsAuthenticated={setIsAuthenticated}/> : <Navigate to='/auth' replace/>} />
           <Route path='/auth' element={isAuthenticated ? <Navigate to='/todo' replace/> : <AuthPage onLogin={handleLogin}/>}  />
         </Routes>
     </div>

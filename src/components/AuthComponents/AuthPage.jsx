@@ -23,8 +23,8 @@ const AuthPage = ({onLogin}) => {
         ))
     }
 
-    const checkCredentials = async () => {
-
+    const handleCredentials = async (e) => {
+        e.preventDefault();
         if (isLogin) {
             try {
                     //send login credentials
@@ -107,7 +107,7 @@ const AuthPage = ({onLogin}) => {
   return (
     <div className="flex flex-col items-center" >
         <div className='flex flex-col justify-center h-[100vh]'>
-            <form action="" className='flex flex-col items-center  border-2 rounded-2xl px-8'>
+            <form onSubmit={handleCredentials} className='flex flex-col items-center  border-2 rounded-2xl px-8'>
                 <h1 className="font-semibold text-2xl my-10">{(isLogin) ? 'Login':'Sign Up'}</h1>
                 {errorMessage && 
                 <div className='text-xs max-h-20 w-84 p-2 mb-1 border rounded-xl border-red-900 bg-red-100 overflow-scroll'>
@@ -135,7 +135,7 @@ const AuthPage = ({onLogin}) => {
                         <label className='ml-2 text-sm flex flex-row items-center'><input className='mr-2' type='checkbox'/>remember me</label>
                 </div>}
                 <div className='flex w-full justify-center mb-4'>
-                    <button type="button" className='w-full font-semibold border rounded-2xl border-gray-600 px-3 py-1 cursor-pointer' onClick={checkCredentials}>{(isLogin) ? 'Login':'Sign Up'}</button>
+                    <button type="submit" className='w-full font-semibold border rounded-2xl border-gray-600 px-3 py-1 cursor-pointer' >{(isLogin) ? 'Login':'Sign Up'}</button>
                 </div>
                 <div className='mb-4'>
                     <p className='text-xs'>{isLogin ? 'Don\'t have an Account?':'already have an account?'} <a className='font-bold' href='#' onClick={() => setIsLogin(!isLogin)}>{(isLogin)? 'SignUp':'Sign In'}</a></p>

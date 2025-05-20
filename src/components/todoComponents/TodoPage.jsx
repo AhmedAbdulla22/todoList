@@ -2,60 +2,37 @@ import React, { useEffect, useState } from 'react'
 import TodoCard from './todoCard';
 import LoadingSpinner from '../Spinner';
 import tasks from '../../todos.json'
-import { Navigate, redirect, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
+import {handleTodoUpdate,handleTodoRemove,addNewTodo,handleTodosRead} from './todoHandlers'
 
-const TodoPage = () => {
+const TodoPage = ({setIsAuthenticated}) => {
 
+    const navigate = useNavigate();
     const [allTodos,setAllTodos] = useState([])
     const [isLoading, setIsLoading] = useState(true);
     const [newTask,setNewTask] = useState('');
 
-    const navigate = useNavigate();
 
     const handleSignOut = () => {
         localStorage.setItem('isAuthenticated','false');
+        setIsAuthenticated(false);
         navigate('/auth',{replace: true})
     }
+
     //load Todos on mount
     useEffect(() => {
-        const todos = JSON.parse(localStorage.getItem('todos'))
-        console.log(todos)
-        setAllTodos(todos);
+        handleTodosRead(setAllTodos);
         setIsLoading(false);
     },[])
 
-    //handle updates
-    const handleTodoUpdate = (id , updates) => {
-        console.log(updates)
-        setAllTodos(prevTodos => prevTodos.map(todo =>
-            todo.id === id ? {...todo,...updates}:todo ))
-    }
-
-    //handle removing
-    const handleTodoRemove = (id) => {
-        setAllTodos(prev => prev.filter(todo => todo.id !== id));
-    }
+    
 
     //save todos
     useEffect(()=>{
         localStorage.setItem('todos',JSON.stringify(allTodos));
     },[allTodos])
 
-    const addTodo = async () => {
-        if(newTask.trim())
-        {
-            const todo = {
-                "id": (allTodos.length) ? allTodos[allTodos.length - 1].id + 1:0,
-                "description":newTask,
-                "done":false
-            }
-            setAllTodos(prev => [...prev,todo])
-            setNewTask('');//refresh input
-
-            const res = await fetch('https://to-do-list-spa-express-94di.vercel.app');
-            console.log(res)
-        }
-    }
+    
 
   return (
     <div className="todos-container flex flex-col items-center justify-center h-[100vh] p-3">
@@ -65,7 +42,7 @@ const TodoPage = () => {
             <div className="input-container flex text-sm     border rounded-2xl w-full overflow-hidden relative">
                 
                     <input type="text" id="task-input" value={newTask} onChange={e => setNewTask(e.target.value)} className="border rounded-2xl accent-black border-none w-min-0 w-full py-1 px-2" placeholder='write a todo...'/>
-                    <button className="rounded-2xl border-2 border-y-0 h-full py-1 px-2 cursor-pointer absolute right-0 w-20" onClick={addTodo}>Add</button>
+                    <button className="rounded-2xl border-2 border-y-0 h-full py-1 px-2 cursor-pointer absolute right-0 w-20" onClick={()=> addNewTodo(newTask,setNewTask,allTodos,setAllTodos)}>Add</button>
 
             </div>
 
@@ -75,10 +52,11 @@ const TodoPage = () => {
                 <ul className='flex flex-col divide-y'>
                     {allTodos.filter(todo => !todo.done).map((todo)=>
                         <TodoCard 
-                        key={todo.id}
+                        key={todo.todoid}
                         todo={todo}
                         onUpdate={handleTodoUpdate}
-                        onRemove={handleTodoRemove}/>
+                        onRemove={handleTodoRemove}
+                        setAllTodos={setAllTodos}/>
                     )}    
                 </ul>}
             </div>
