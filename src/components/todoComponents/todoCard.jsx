@@ -54,6 +54,15 @@ const TodoCard = ({todo: {todoid,description,date,done},onUpdate,onRemove,setAll
                 handleChange('description',e.target.value)  
                 }}
                 /> 
+                <input 
+                type="date" 
+                value={date} 
+                className="border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 min-w-0 w-45 w-max-10"
+                readOnly={done}
+                onChange={(e)=>{
+                  handleChange('date',e.target.value)  
+                  }}
+              />
               
               <button className='text-red-700 text-xl cursor-pointer h-6' onClick={() => onRemove(todoid,setAllTodos)}><img src={deleteIconUrl}  alt="Delete" /></button>
           </li>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { FaUser } from "react-icons/fa6";
 import { Navigate } from 'react-router-dom';
 import { IoMdLock } from "react-icons/io";
+import DarkModeButton from './DarkModeButton';
 
 const backendURL = import.meta.env.VITE_BACKEND_URL;
 
@@ -9,10 +10,7 @@ const AuthPage = ({onLogin}) => {
     const [isLogin,setIsLogin] = useState(true);
     const [credentials,setCredentials] = useState({username:'',password:'',confirmPassword:''});
     const [errorMessage,setErrorMessage] = useState(null);
-    const [darkMode,setDarkMode] = useState(false);
-
-    const toggleDarkMode = () => {}
-
+    
     const handleChange = (propName,value) => {
         //...prev using spread op to get the properties and [propName] to get the prop we want to updatee
         setCredentials(prev => (
@@ -143,7 +141,7 @@ const AuthPage = ({onLogin}) => {
             </form>
         </div>
         <div className='absolute bottom-2 right-2'>
-            <button className='text-white bg-black rounded-full w-[50px] h-[50px] cursor-pointer' onClick={toggleDarkMode}>{darkMode ? 'WHT':'DRK'}</button>
+            <DarkModeButton/>
         </div>
     </div>
   )

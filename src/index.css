@@ -4,6 +4,14 @@
 :root{
     --background-color: rgb(255, 255, 255) ;
     --font-color: rgb(19, 19, 19) ;
+    --high-priority-color: #ff6467;
+    --medium-priority-color: #ff8904;
+    --low-priority-color: #05df72;
+}
+
+[data-theme = 'dark'] {
+    --background-color:rgb(27, 27, 27);
+    --font-color: rgb(255, 255, 255) ;
 }
 
 body {

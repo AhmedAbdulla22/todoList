@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import TodoCard from './todoCard';
-import tasks from '../../todos.json'
 import {  useNavigate } from 'react-router-dom';
 import {handleTodoUpdate,handleTodoRemove,addNewTodo,handleTodosRead} from './todoHandlers'
 
@@ -43,10 +42,11 @@ const TodoPage = ({setIsAuthenticated}) => {
             <div className="input-container flex text-sm     border rounded-2xl w-full overflow-hidden relative">
                 
                     <input type="text" id="task-input" value={newTask} onChange={e => setNewTask(e.target.value)} className="border rounded-2xl accent-black border-none w-min-0 w-full py-1 px-2" placeholder='write a todo...'/>
-                    <select className='absolute right-20 w-20'>
-                        <option className='bg-green-400'>high</option>
-                        <option className='bg-orange-400'>medium</option>
-                        <option className='bg-red-400'>low</option>
+                    <select className='absolute right-20 w-20 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 min-w-0 w-15 w-max-10' placeholder='Priority'>
+                        <option value='' selected disabled >Priority</option>
+                        <option className='bg-[color:var(--low-priority-color)]' value='3' >low</option>
+                        <option className='bg-[color:var(--medium-priority-color)]' value='2'>medium</option>
+                        <option className='bg-[color:var(--high-priority-color)]' value='1'>high</option>
                     </select>
                     <button className="rounded-2xl border-2 border-y-0 h-full py-1 px-2 cursor-pointer absolute right-0 w-20" onClick={()=> addNewTodo(newTask,setNewTask,allTodos,setAllTodos)}>Add</button>
 
