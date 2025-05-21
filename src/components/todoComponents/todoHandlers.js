@@ -68,7 +68,7 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
             if(res.ok) {
                 const data = await res.json();
                 setAllTodos(prevTodos => prevTodos.map(todo =>
-                todo.id === id ? updatedTodo:todo))
+                todo.todoid === id ? updatedTodo:todo))
 
                 return true;
             }
@@ -91,7 +91,7 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
             const res = await fetchWithAuth(url,options);
 
             if(res.ok) {
-                setAllTodos(prev => prev.filter(todo => todo.id !== id));
+                setAllTodos(prev => prev.filter(todo => todo.todoid !== id));
 
                 return true;
             }
