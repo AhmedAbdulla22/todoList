@@ -42,7 +42,7 @@ const TodoCard = ({todo: {todoid,description,date,done,priority},onUpdate,onRemo
 
 
   return (
-          <li className='flex flex-row items-center text-sm gap-1 py-1 full'>
+          <li className={`flex flex-row items-center text-sm gap-1 py-1 px-1 full rounded-[5px] m bg-[color:var(--${_priority == 3 ? 'low':(_priority == 2) ? 'medium' : 'high'}-priority-color)]`}>
               <input type='checkbox' className='accent-black' checked={_done} onChange={(e) => {
                 handleChange('done',e.target.checked)  
               }}/>

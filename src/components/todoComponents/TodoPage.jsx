@@ -72,7 +72,8 @@ const TodoPage = ({setIsAuthenticated}) => {
                             <select 
                             name='priority'
                             value={newTask.priority}
-                            className='custom-select flex items-center justify-center w-6 max-w-6 h-6 border rounded-full focus:outline-none cursor-pointer' 
+
+                            className={`custom-select flex items-center bg-[color:var(--${newTask.priority == 3 ? 'low':(newTask.priority == 2) ? 'medium' : 'high'}-priority-color)] justify-center w-6 max-w-6 h-6 border rounded-full focus:outline-none cursor-pointer`} 
                             onChange={handleChange}>
                                 <option className='bg-[color:var(--low-priority-color)]' value='3' >low</option>
                                 <option className='bg-[color:var(--medium-priority-color)]' value='2'>medium</option>
@@ -91,7 +92,7 @@ const TodoPage = ({setIsAuthenticated}) => {
             <div className="border rounded-xl p-2 w-full h-80 overflow-auto">
                 {isLoading ||
                 allTodos.length !== 0 &&
-                <ul className='flex flex-col divide-y'>
+                <ul className='flex flex-col  gap-0.5'>
                     {allTodos.filter(todo => !todo.done).map((todo)=>
                         <TodoCard 
                         key={todo.todoid}
