@@ -38,13 +38,6 @@ const TodoPage = ({setIsAuthenticated}) => {
 
     
 
-    //save todos
-    useEffect(()=>{
-        localStorage.setItem('todos',JSON.stringify(allTodos));
-    },[allTodos])
-
-    
-
   return (
     <div className="todos-container flex flex-col items-center justify-center h-[100vh] p-3">
         

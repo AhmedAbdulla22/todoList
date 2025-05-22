@@ -46,7 +46,7 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
             if(res.ok) {
                 const data = await res.json();
-                setAllTodos(data);
+                setAllTodos(sortTodos(data));
             }
         } catch (error) {
             console.error(error)
@@ -74,10 +74,10 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
                     }
             const res = await fetchWithAuth(url,options);
 
-            if(res.ok) {
-                const data = await res.json();
-                setAllTodos(prevTodos => prevTodos.map(todo =>
-                todo.todoid === id ? updatedTodo:todo))
+            if(res.ok) {                
+                
+                setAllTodos(prevTodos => sortTodos(prevTodos.map(todo =>
+                    todo.todoid === id ? updatedTodo:todo)))
 
                 return true;
             }
@@ -140,7 +140,8 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
                 const res = await fetchWithAuth(url,options);
 
                 if(res.ok) {
-                    setAllTodos(prev => [...prev,todo])
+                    const sorted = sortTodos([...allTodos,todo]);
+                    setAllTodos(sorted);
                     return true;
                 }
 
