@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { compareAsc, compareDesc, format } from 'date-fns';
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL; 
 
     const fetchWithAuth = async (url,options = {}) => {
@@ -22,6 +22,15 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
     }
 
+    const sortTodos = (todos) => {
+        const sorted = [...todos];
+        sorted.sort((a,b) => {
+            const comparisonDiff = a.priority - b.priority;
+            return (comparisonDiff !== 0) ? comparisonDiff : compareDesc(a.date,b.date);
+        });
+
+        return sorted;
+    }
     //handle reading Tasks
     export const handleTodosRead = async (setAllTodos) => {
         try {
@@ -37,7 +46,9 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
             if(res.ok) {
                 const data = await res.json();
-
+                const sorted = sortTodos(data);
+                console.log(data);
+                console.log(sorted);
                 setAllTodos(data);
             }
         } catch (error) {
@@ -101,14 +112,15 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
     }
     //handle Adding New Todo
     export const addNewTodo = async (newTask,setNewTask,allTodos,setAllTodos) => {
-        if(newTask.trim())
+        if(newTask.description.trim())
         {
             const now = format(new Date(),"yyyy-MM-dd"); 
             const todo = {
                 "todoid": (allTodos.length) ? allTodos[allTodos.length - 1].todoid + 1:0,
-                "description":newTask,
-                "date":now,//here i return default one for today
-                "done":false
+                "description":newTask.description,
+                "date":(newTask.date === '') ? now : newTask.date,//here i return default one for today
+                "done":false,
+                "priority":newTask.priority
             }
 
             try {
@@ -124,6 +136,7 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
                                 description:todo.description ,
                                 date: todo.date,
                                 done:todo.done ,
+                                priority: todo.priority
                             })
                         }
                 const res = await fetchWithAuth(url,options);
@@ -136,7 +149,11 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
             } catch (error) {
                 console.error(error)
             } finally {
-                setNewTask('');//refresh input
+                setNewTask({
+                    description:'',
+                    date:'',
+                    priority:3,//3 by default is low
+                });//refresh input
             }
         }
     }

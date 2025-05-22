@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import TodoCard from './todoCard';
 import {  useNavigate } from 'react-router-dom';
 import {handleTodoUpdate,handleTodoRemove,addNewTodo,handleTodosRead} from './todoHandlers'
+import { FaFlag } from "react-icons/fa";
+import { MdDateRange } from "react-icons/md";
 
 
 
@@ -10,7 +12,16 @@ const TodoPage = ({setIsAuthenticated}) => {
     const navigate = useNavigate();
     const [allTodos,setAllTodos] = useState([])
     const [isLoading, setIsLoading] = useState(true);
-    const [newTask,setNewTask] = useState('');
+    const [newTask,setNewTask] = useState({
+        description:'',
+        date:'',
+        priority:3,//3 by default is low
+    });
+
+    const handleChange = (e) => {
+            const {name,value} = e.target;
+            setNewTask(prev => ({...prev, [name]:value}));
+    }
 
 
     const handleSignOut = () => {
@@ -39,16 +50,41 @@ const TodoPage = ({setIsAuthenticated}) => {
         
         <div className='todos-wrapper border rounded-2xl flex flex-col items-center p-3 gap-2 min-[720px]:w-[700px] w-full overflow-hidden'>
             <h3 className='text-xl font-semibold'>Todo List App</h3>
-            <div className="input-container flex text-sm     border rounded-2xl w-full overflow-hidden relative">
+            <div className="input-container flex text-sm border rounded-xl w-full overflow-hidden relative items-center gap-1">
                 
-                    <input type="text" id="task-input" value={newTask} onChange={e => setNewTask(e.target.value)} className="border rounded-2xl accent-black border-none w-min-0 w-full py-1 px-2" placeholder='write a todo...'/>
-                    <select className='absolute right-20 w-20 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 min-w-0 w-15 w-max-10' placeholder='Priority'>
-                        <option value='' selected disabled >Priority</option>
-                        <option className='bg-[color:var(--low-priority-color)]' value='3' >low</option>
-                        <option className='bg-[color:var(--medium-priority-color)]' value='2'>medium</option>
-                        <option className='bg-[color:var(--high-priority-color)]' value='1'>high</option>
-                    </select>
-                    <button className="rounded-2xl border-2 border-y-0 h-full py-1 px-2 cursor-pointer absolute right-0 w-20" onClick={()=> addNewTodo(newTask,setNewTask,allTodos,setAllTodos)}>Add</button>
+                         <input type="text"
+                         id="task-input"
+                         name='description'
+                         value={newTask.description}
+                         onChange={handleChange}
+                         className=" accent-black border-none w-min-0 py-1 px-2 w-full focus:outline-none"
+                         placeholder='write a todo...'/>
+
+                        <input 
+                            type="date" 
+                            name='date'
+                            value={newTask.date}
+                            className="date-input flex items-center justify-center w-6 max-w-6 h-6 border rounded-full focus:outline-none  cursor-pointer"
+                            onChange={handleChange} 
+                        />
+
+                        <div className='relative'>
+                            <select 
+                            name='priority'
+                            value={newTask.priority}
+                            className='custom-select flex items-center justify-center w-6 max-w-6 h-6 border rounded-full focus:outline-none cursor-pointer' 
+                            onChange={handleChange}>
+                                <option className='bg-[color:var(--low-priority-color)]' value='3' >low</option>
+                                <option className='bg-[color:var(--medium-priority-color)]' value='2'>medium</option>
+                                <option className='bg-[color:var(--high-priority-color)]' value='1'>high</option>
+                            </select>
+
+                            <div className="absolute top-1/2 right-1/2 transform -translate-y-1/2 translate-x-1/2 pointer-events-none">
+                                <FaFlag className='flex text-xs'/>
+                            </div>
+                        </div>
+
+                        <button className="flex items-center justify-center w-6 h-6 border bg-green-400 rounded-full px-2 mr-1 focus:outline-none cursor-pointer" onClick={()=> addNewTodo(newTask,setNewTask,allTodos,setAllTodos)}>+</button>
 
             </div>
 

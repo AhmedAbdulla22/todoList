@@ -5,10 +5,11 @@ import deleteIconUrl from '../../assets/deleteIcon.svg?url'
 
 
 
-const TodoCard = ({todo: {todoid,description,date,done},onUpdate,onRemove,setAllTodos}) => {  
+const TodoCard = ({todo: {todoid,description,date,done,priority},onUpdate,onRemove,setAllTodos}) => {  
   const [_description,setDescription] = useState(description);
   const [_done,setDone] = useState(done);
   const [_date,setDate] = useState(date);
+  const [_priority,setPriority] = useState(priority);
   let timerId = undefined;
 
   
@@ -19,6 +20,7 @@ const TodoCard = ({todo: {todoid,description,date,done},onUpdate,onRemove,setAll
         description: (field === 'description') ? value:_description,
         date: (field === 'date') ? value:_date,
         done: (field === 'done') ? value:_done,
+        priority: (field === 'priority') ? value:_priority,
     } 
 
     if(field === 'description') {

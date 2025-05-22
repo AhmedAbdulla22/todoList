@@ -20,5 +20,13 @@ body {
     color: var(--font-color);
 }
 
+.custom-select {
+  appearance: none;
+  -webkit-appearance: none; 
+  -moz-appearance: none;  
+  background-image: none; 
+  padding-right: 1.4rem;
+  overflow: hidden; 
+}
 
 
