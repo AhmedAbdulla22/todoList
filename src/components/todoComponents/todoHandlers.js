@@ -22,7 +22,7 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
     }
 
-    const sortTodos = (todos) => {
+    export const sortTodos = (todos) => {
         const sorted = [...todos];
         sorted.sort((a,b) => {
             const comparisonDiff = a.priority - b.priority;
@@ -46,9 +46,6 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
             if(res.ok) {
                 const data = await res.json();
-                const sorted = sortTodos(data);
-                console.log(data);
-                console.log(sorted);
                 setAllTodos(data);
             }
         } catch (error) {
@@ -72,6 +69,7 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
                             description:updatedTodo.description ,
                             date: updatedTodo.date,
                             done:updatedTodo.done ,
+                            priority: updatedTodo.priority
                         })
                     }
             const res = await fetchWithAuth(url,options);

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import TodoCard from './todoCard';
 import {  useNavigate } from 'react-router-dom';
-import {handleTodoUpdate,handleTodoRemove,addNewTodo,handleTodosRead} from './todoHandlers'
+import {handleTodoUpdate,handleTodoRemove,addNewTodo,handleTodosRead,sortTodos} from './todoHandlers'
 import { FaFlag } from "react-icons/fa";
 import { MdDateRange } from "react-icons/md";
 
@@ -48,16 +48,16 @@ const TodoPage = ({setIsAuthenticated}) => {
   return (
     <div className="todos-container flex flex-col items-center justify-center h-[100vh] p-3">
         
-        <div className='todos-wrapper border rounded-2xl flex flex-col items-center p-3 gap-2 min-[720px]:w-[700px] w-full overflow-hidden'>
+        <div className='todos-wrapper border rounded-2xl flex flex-col items-center p-3 gap-2 min-[720px]:w-[700px] w-full overflow-hidden [box-shadow:0_5px_15px_0_rgb(0,0,0,0.5)]'>
             <h3 className='text-xl font-semibold'>Todo List App</h3>
-            <div className="input-container flex text-sm border rounded-xl w-full overflow-hidden relative items-center gap-1">
+            <div className="input-container flex text-sm border rounded-xl w-full overflow-hidden relative items-center gap-1 [box-shadow:inset_0_0px_5px_0_rgb(0,0,0,0.3)]">
                 
                          <input type="text"
                          id="task-input"
                          name='description'
                          value={newTask.description}
                          onChange={handleChange}
-                         className=" accent-black border-none w-min-0 py-1 px-2 w-full focus:outline-none"
+                         className=" accent-black border-none w-min-0 py-1 px-2 w-full focus:outline-none "
                          placeholder='write a todo...'/>
 
                         <input 
@@ -89,7 +89,7 @@ const TodoPage = ({setIsAuthenticated}) => {
 
             </div>
 
-            <div className="border rounded-xl p-2 w-full h-80 overflow-auto">
+            <div className="border rounded-xl p-2 w-full h-80 overflow-auto [box-shadow:inset_0_0px_10px_0_rgb(0,0,0,0.5)]">
                 {isLoading ||
                 allTodos.length !== 0 &&
                 <ul className='flex flex-col  gap-0.5'>
@@ -104,7 +104,7 @@ const TodoPage = ({setIsAuthenticated}) => {
                 </ul>}
             </div>
             
-            <div className='completed-todos-container border rounded-xl p-2 w-full overflow-auto'>
+            <div className='completed-todos-container border rounded-xl p-2 w-full overflow-auto [box-shadow:inset_0_0px_10px_0_rgb(0,0,0,0.5)]'>
                 <h3 className='text-20 text-center font-semibold'>Completed Todos</h3>
                 {isLoading  ||
                 allTodos.length !== 0 &&

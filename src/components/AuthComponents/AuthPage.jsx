@@ -10,7 +10,7 @@ const AuthPage = ({onLogin}) => {
     const [isLogin,setIsLogin] = useState(true);
     const [credentials,setCredentials] = useState({username:'',password:'',confirmPassword:''});
     const [errorMessage,setErrorMessage] = useState(null);
-    
+
     const handleChange = (propName,value) => {
         //...prev using spread op to get the properties and [propName] to get the prop we want to updatee
         setCredentials(prev => (
@@ -105,7 +105,7 @@ const AuthPage = ({onLogin}) => {
   return (
     <div className="flex flex-col items-center" >
         <div className='flex flex-col justify-center h-[100vh]'>
-            <form onSubmit={handleCredentials} className='flex flex-col items-center  border-2 rounded-2xl px-8'>
+            <form onSubmit={handleCredentials} className='flex flex-col items-center  border-2 rounded-2xl px-8 [box-shadow:0_5px_15px_0_rgb(0,0,0,0.5)]'>
                 <h1 className="font-semibold text-2xl my-10">{(isLogin) ? 'Login':'Sign Up'}</h1>
                 {errorMessage && 
                 <div className='text-xs max-h-20 w-84 p-2 mb-1 border rounded-xl border-red-900 bg-red-100 overflow-scroll'>
