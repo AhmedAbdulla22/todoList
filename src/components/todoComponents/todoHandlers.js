@@ -1,4 +1,6 @@
-import { compareAsc, compareDesc, format } from 'date-fns';
+import {compareDesc, format } from 'date-fns';
+import {v4 as uuid} from 'uuid';
+
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL; 
 
     const fetchWithAuth = async (url,options = {}) => {
@@ -75,9 +77,12 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
             const res = await fetchWithAuth(url,options);
 
             if(res.ok) {                
-                
-                setAllTodos(prevTodos => sortTodos(prevTodos.map(todo =>
-                    todo.todoid === id ? updatedTodo:todo)))
+
+                setAllTodos(prevTodos => {
+                    const updated = sortTodos(prevTodos.map(todo =>
+                    todo.todoid === id ? updatedTodo:todo));
+                        return updated;
+                    });                    
 
                 return true;
             }
@@ -114,7 +119,7 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
         {
             const now = format(new Date(),"yyyy-MM-dd"); 
             const todo = {
-                "todoid": (allTodos.length) ? allTodos[allTodos.length - 1].todoid + 1:0,
+                "todoid": uuid(),
                 "description":newTask.description,
                 "date":(newTask.date === '') ? now : newTask.date,//here i return default one for today
                 "done":false,
@@ -140,8 +145,11 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
                 const res = await fetchWithAuth(url,options);
 
                 if(res.ok) {
-                    const sorted = sortTodos([...allTodos,todo]);
-                    setAllTodos(sorted);
+                    setAllTodos(prev => {
+                    const updated = sortTodos([...prev, todo]);
+                        return updated;
+                    });
+
                     return true;
                 }
 

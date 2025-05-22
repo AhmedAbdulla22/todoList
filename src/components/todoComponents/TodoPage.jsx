@@ -36,6 +36,7 @@ const TodoPage = ({setIsAuthenticated}) => {
         setIsLoading(false);
     },[])
 
+
     
 
   return (
@@ -78,7 +79,9 @@ const TodoPage = ({setIsAuthenticated}) => {
                             </div>
                         </div>
 
-                        <button className="flex items-center justify-center w-6 h-6 border bg-green-400 rounded-full px-2 mr-1 focus:outline-none cursor-pointer" onClick={()=> addNewTodo(newTask,setNewTask,allTodos,setAllTodos)}>+</button>
+                        <button className="flex items-center justify-center w-6 h-6 border bg-green-400 rounded-full px-2 mr-1 focus:outline-none cursor-pointer" onClick={()=> {
+                            addNewTodo(newTask,setNewTask,allTodos,setAllTodos);
+                            }}>+</button>
 
             </div>
 
