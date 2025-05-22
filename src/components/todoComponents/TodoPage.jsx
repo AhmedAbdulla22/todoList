@@ -4,6 +4,8 @@ import {  useNavigate } from 'react-router-dom';
 import {handleTodoUpdate,handleTodoRemove,addNewTodo,handleTodosRead,sortTodos} from './todoHandlers'
 import { FaFlag } from "react-icons/fa";
 import { MdDateRange } from "react-icons/md";
+import DescriptionInput from './DescriptionInput';
+import SignOutBtn from './SignOutBtn';
 
 
 
@@ -21,6 +23,10 @@ const TodoPage = ({setIsAuthenticated}) => {
     const handleChange = (e) => {
             const {name,value} = e.target;
             setNewTask(prev => ({...prev, [name]:value}));
+    }
+
+    const handleAdding = () => {
+        addNewTodo(newTask,setNewTask,allTodos,setAllTodos);
     }
 
 
@@ -42,17 +48,11 @@ const TodoPage = ({setIsAuthenticated}) => {
   return (
     <div className="todos-container flex flex-col items-center justify-center h-[100vh] p-3">
         
-        <div className='todos-wrapper border rounded-2xl flex flex-col items-center p-3 gap-2 min-[720px]:w-[700px] w-full overflow-hidden [box-shadow:0_5px_15px_0_rgb(0,0,0,0.5)]'>
+        <div className='todos-wrapper border rounded-2xl flex flex-col items-center p-3 gap-2 min-[720px]:w-[700px] w-full [box-shadow:0_5px_15px_0_rgb(0,0,0,0.5)] relative'>
             <h3 className='text-xl font-semibold'>Todo List App</h3>
             <div className="input-container flex text-sm border rounded-xl w-full overflow-hidden relative items-center gap-1 [box-shadow:inset_0_0px_5px_0_rgb(0,0,0,0.3)]">
                 
-                         <input type="text"
-                         id="task-input"
-                         name='description'
-                         value={newTask.description}
-                         onChange={handleChange}
-                         className=" accent-black border-none w-min-0 py-1 px-2 w-full focus:outline-none "
-                         placeholder='write a todo...'/>
+                         <DescriptionInput description={newTask.description} handleChange={handleChange} onEnter={handleAdding}/>
 
                         <input 
                             type="date" 
@@ -79,9 +79,7 @@ const TodoPage = ({setIsAuthenticated}) => {
                             </div>
                         </div>
 
-                        <button className="flex items-center justify-center w-6 h-6 border bg-green-400 rounded-full px-2 mr-1 focus:outline-none cursor-pointer" onClick={()=> {
-                            addNewTodo(newTask,setNewTask,allTodos,setAllTodos);
-                            }}>+</button>
+                        <button className="flex items-center justify-center w-6 h-6 border bg-green-400 rounded-full px-2 mr-1 focus:outline-none cursor-pointer" onClick={handleAdding}>+</button>
 
             </div>
 
@@ -115,11 +113,10 @@ const TodoPage = ({setIsAuthenticated}) => {
                         
                     )}    
                 </ul> || <div><p>Empty</p></div>}
+
             </div>
+                <SignOutBtn handleSignOut={handleSignOut}/>
         </div>
-            <div className="signOut-container  w-20 border border-black rounded-xl text-center absolute top-2 right-2">
-                    <button className='signOut-button cursor-pointer' onClick={handleSignOut}>Sign Out</button>
-            </div>  
     </div>
   )
 }

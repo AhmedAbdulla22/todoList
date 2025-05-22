@@ -1,4 +1,4 @@
-import {compareDesc, format } from 'date-fns';
+import {compareAsc, format } from 'date-fns';
 import {v4 as uuid} from 'uuid';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL; 
@@ -28,7 +28,7 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
         const sorted = [...todos];
         sorted.sort((a,b) => {
             const comparisonDiff = a.priority - b.priority;
-            return (comparisonDiff !== 0) ? comparisonDiff : compareDesc(a.date,b.date);
+            return (comparisonDiff !== 0) ? comparisonDiff : compareAsc(a.date,b.date);
         });
 
         return sorted;

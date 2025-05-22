@@ -48,6 +48,7 @@ const TodoCard = ({todo: {todoid,description,date,done,priority},onUpdate,onRemo
                 defaultValue={description}
                 readOnly={done}
                 onChange={(e)=>{
+                  if(e.target)
                 handleChange('description',e.target.value)  
                 }}
                 /> 
