@@ -130,7 +130,7 @@ const AuthPage = ({onLogin}) => {
 
                 {(isLogin) && 
                 <div className='flex w-full mb-4'>
-                        <label className='ml-2 text-sm flex flex-row items-center'><input className='mr-2' type='checkbox'/>remember me</label>
+                        {/* <label className='ml-2 text-sm flex flex-row items-center'><input className='mr-2' type='checkbox'/>remember me</label> */}
                 </div>}
                 <div className='flex w-full justify-center mb-4'>
                     <button type="submit" className='w-full font-semibold border rounded-2xl border-gray-600 px-3 py-1 cursor-pointer' >{(isLogin) ? 'Login':'Sign Up'}</button>
