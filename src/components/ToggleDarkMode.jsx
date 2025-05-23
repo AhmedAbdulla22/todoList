@@ -1,9 +1,10 @@
-import {useState,useEffect} from 'react'
+import {useState,useEffect, useRef} from 'react'
 import { FaSun } from "react-icons/fa";
 import { FaMoon } from "react-icons/fa";
 
 const ToggleDarkMode = () => {
     const [darkMode,setDarkMode] = useState(false);
+    const isMounted = useRef(false);
 
      const loadTheme = () => {
             const theme = localStorage.getItem('theme');
@@ -19,7 +20,14 @@ const ToggleDarkMode = () => {
             saveTheme();
         }
     
-        useEffect(toggleDarkMode,[darkMode]);
+        useEffect(() => {
+            if(isMounted.current) {
+                toggleDarkMode();
+            }
+            else {
+                isMounted.current = true;
+            }
+        },[darkMode]);
         useEffect(loadTheme,[]);
     
     

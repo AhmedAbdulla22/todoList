@@ -1,7 +1,8 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useState,useRef} from 'react'
 
 const DarkModeButton = () => {
     const [darkMode,setDarkMode] = useState(false);
+    const isMounted = useRef(false);
 
     const loadTheme = () => {
         const theme = localStorage.getItem('theme');
@@ -17,7 +18,15 @@ const DarkModeButton = () => {
         saveTheme();
     }
 
-    useEffect(toggleDarkMode,[darkMode]);
+    useEffect(() =>{
+            if(isMounted.current) {
+                toggleDarkMode();
+            }
+            else {
+                isMounted.current = true;
+            }
+        },[darkMode]);
+
     useEffect(loadTheme,[]);
 
 
