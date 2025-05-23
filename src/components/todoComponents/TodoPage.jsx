@@ -113,7 +113,7 @@ const TodoPage = ({setIsAuthenticated}) => {
                         setAllTodos={setAllTodos}/>
                         
                     )}    
-                </ul> || <div><p>Empty</p></div>}
+                </ul>}
 
             </div>
                 <ToggleDarkMode location={'absolute right-25 -bottom-10'}/>
