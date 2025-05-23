@@ -4,9 +4,10 @@
 :root{
     /* --background-color: rgb(255, 255, 255) ; */
     --font-color: rgb(19, 19, 19) ;
-    --high-priority-color: #ff6467;
+    --high-priority-color: #ff3f3e;
     --medium-priority-color: #ff8904;
     --low-priority-color: #05df72;
+   
     background: #ECE9E6;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -16,6 +17,9 @@
 [data-theme = 'dark'] {
     /* --background-color:rgb(27, 27, 27); */
     --font-color: rgb(255, 255, 255) ;
+    --high-priority-color: #ed0018;
+    --medium-priority-color: #ed7e00;
+    --low-priority-color: #00ac56;
     background: #000000;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */

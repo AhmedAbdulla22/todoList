@@ -103,7 +103,7 @@ const TodoPage = ({setIsAuthenticated}) => {
                 <h3 className='text-20 text-center font-semibold'>Completed Todos</h3>
                 {isLoading  ||
                 allTodos.length !== 0 &&
-                <ul>
+                <ul className='flex flex-col gap-1'>
                     {allTodos.filter(todo => todo.done).map((todo)=>
                         <TodoCard 
                         key={todo.todoid}
