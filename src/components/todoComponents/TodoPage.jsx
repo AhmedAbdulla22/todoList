@@ -83,7 +83,8 @@ const TodoPage = ({setIsAuthenticated}) => {
 
             </div>
 
-            <div className="border rounded-xl p-2 w-full h-80 overflow-auto [box-shadow:inset_0_0px_10px_0_rgb(0,0,0,0.5)]">
+            <div className="border rounded-xl p-2 w-full overflow-auto [box-shadow:inset_0_0px_10px_0_rgb(0,0,0,0.5)] max-h-60">
+                <h3 className='text-20 text-center font-semibold'>Tasks todo</h3>
                 {isLoading ||
                 allTodos.length !== 0 &&
                 <ul className='flex flex-col  gap-0.5'>
@@ -98,7 +99,7 @@ const TodoPage = ({setIsAuthenticated}) => {
                 </ul>}
             </div>
             
-            <div className='completed-todos-container border rounded-xl p-2 w-full overflow-auto [box-shadow:inset_0_0px_10px_0_rgb(0,0,0,0.5)]'>
+            <div className='completed-todos-container border rounded-xl p-2 w-full overflow-auto [box-shadow:inset_0_0px_10px_0_rgb(0,0,0,0.5)] max-h-60'>
                 <h3 className='text-20 text-center font-semibold'>Completed Todos</h3>
                 {isLoading  ||
                 allTodos.length !== 0 &&
