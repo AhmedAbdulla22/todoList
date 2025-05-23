@@ -1,9 +1,10 @@
-import {  useState } from 'react'
-import { Navigate,Router, Route, Routes } from 'react-router-dom'
+import {  useEffect, useState } from 'react'
+import { Navigate,Router, Route, Routes, useNavigate } from 'react-router-dom'
 import AuthPage from './components/AuthComponents/AuthPage'
 import TodoPage from './components/todoComponents/TodoPage'
 
 function App() {
+    const navigate = useNavigate();
   const [isAuthenticated,setIsAuthenticated] = useState(
     localStorage.getItem('isAuthenticated') === 'true'
   ); 
@@ -13,6 +14,7 @@ function App() {
     setIsAuthenticated(true);
     localStorage.setItem('isAuthenticated','true');
   }
+
 
   return (
     <div>

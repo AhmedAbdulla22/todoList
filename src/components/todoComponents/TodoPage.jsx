@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import TodoCard from './todoCard';
 import {  useNavigate } from 'react-router-dom';
-import {handleTodoUpdate,handleTodoRemove,addNewTodo,handleTodosRead,sortTodos} from './todoHandlers'
+import {handleTodoUpdate,handleTodoRemove,addNewTodo,handleTodosRead} from './todoHandlers'
 import { FaFlag } from "react-icons/fa";
-import { MdDateRange } from "react-icons/md";
 import DescriptionInput from './DescriptionInput';
 import SignOutBtn from './SignOutBtn';
+import ToggleDarkMode from '../ToggleDarkMode';
 
 
 
@@ -115,6 +115,7 @@ const TodoPage = ({setIsAuthenticated}) => {
                 </ul> || <div><p>Empty</p></div>}
 
             </div>
+                <ToggleDarkMode />
                 <SignOutBtn handleSignOut={handleSignOut}/>
         </div>
     </div>
