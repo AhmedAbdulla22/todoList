@@ -115,7 +115,7 @@ const TodoPage = ({setIsAuthenticated}) => {
                 </ul> || <div><p>Empty</p></div>}
 
             </div>
-                <ToggleDarkMode />
+                <ToggleDarkMode location={'absolute right-25 -bottom-10'}/>
                 <SignOutBtn handleSignOut={handleSignOut}/>
         </div>
     </div>

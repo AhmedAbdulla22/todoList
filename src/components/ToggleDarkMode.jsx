@@ -2,7 +2,7 @@ import {useState,useEffect, useRef} from 'react'
 import { FaSun } from "react-icons/fa";
 import { FaMoon } from "react-icons/fa";
 
-const ToggleDarkMode = () => {
+const ToggleDarkMode = ({location = ''}) => {
     const [darkMode,setDarkMode] = useState(false);
     const isMounted = useRef(false);
 
@@ -40,8 +40,8 @@ const ToggleDarkMode = () => {
         }
 
   return (
-    <div className="signOut-container border p-1 border-none  rounded-xl text-center absolute right-25 -bottom-10 text-sm hover:shadow-md hover:border">
-        <div className="flex relative gap-1 items-center">
+    <div className={`signOut-container border p-1 border-none  rounded-xl text-center text-sm hover:shadow-md hover:border ${location}`}>
+        <div className="flex relative gap-1 items-center ">
             <button className='signOut-button cursor-pointer w-full pr-5' onClick={() => setDarkMode(prev => !prev)}>{darkMode ? 'Dark Mode':'Light Mode'}</button>
             {darkMode ? <FaMoon className="absolute right-0 pointer-events-none"/>:<FaSun className="absolute right-0 pointer-events-none"/>}
 

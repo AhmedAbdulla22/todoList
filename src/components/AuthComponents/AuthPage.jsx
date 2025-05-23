@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { FaUser } from "react-icons/fa6";
 import { Navigate } from 'react-router-dom';
 import { IoMdLock } from "react-icons/io";
-import DarkModeButton from './DarkModeButton';
+import ToggleDarkMode from '../ToggleDarkMode';
 
 const backendURL = import.meta.env.VITE_BACKEND_URL;
 
@@ -140,9 +140,9 @@ const AuthPage = ({onLogin}) => {
                 </div>
             </form>
         </div>
-        <div className='absolute bottom-2 right-2'>
-            <DarkModeButton/>
-        </div>
+        
+        <ToggleDarkMode location='absolute right-2 top-2'/>
+        
     </div>
   )
 }
